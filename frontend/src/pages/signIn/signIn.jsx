@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, ArrowRight } from 'lucide-react';
 import Header from '../../components/header/header';
 import './signIn.css';
 
 export default function SignInPage() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -13,6 +14,7 @@ export default function SignInPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Sign in data:', formData);
+    navigate('/project');
   };
 
   return (

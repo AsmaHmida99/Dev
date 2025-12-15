@@ -76,7 +76,7 @@ export default function HomePage() {
                 </div>
                 <div>
                   <p className="home-card-title">85% de progression</p>
-                  <p className="home-card-subtitle">Projet actuel</p>
+                  
                 </div>
               </div>
             </div>
