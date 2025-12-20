@@ -19,13 +19,13 @@ export default function HomePage() {
         <div className="home-hero-content">
           <div className="home-hero-text">
             <h1 className="home-title">
-              Transformez votre{' '}
-              <span className="home-title-gradient">gestion de projet</span>
+              Transform your{' '}
+              <span className="home-title-gradient">project management</span>
             </h1>
 
             <p className="home-description">
-              Organisez, suivez et terminez vos projets efficacement. Une plateforme complète pour gérer vos tâches et
-              suivre la progression.
+              Organize, track and complete your projects efficiently. A complete platform to manage your tasks and
+              track progress.
             </p>
 
             <div className="home-stats">
@@ -34,20 +34,20 @@ export default function HomePage() {
                   <Target className="icon-sm stat-icon" />
                   <span className="home-stat-value">98%</span>
                 </div>
-                <span className="home-stat-label">Projets livrés</span>
+                <span className="home-stat-label">Projects delivered</span>
               </div>
               <div className="home-stat">
                 <div className="home-stat-header">
                   <CheckCircle2 className="icon-sm stat-icon" />
                   <span className="home-stat-value">2.5k+</span>
                 </div>
-                <span className="home-stat-label">Tâches gérées</span>
+                <span className="home-stat-label">Tasks managed</span>
               </div>
             </div>
 
             <div className="home-cta">
               <Link to="/signin" className="cta-button">
-                Commencer
+                Get Started
                 <ArrowRight className="icon-sm" />
               </Link>
             </div>
@@ -55,7 +55,7 @@ export default function HomePage() {
 
           <div className="home-hero-image">
             <div className="home-image-wrapper">
-              <img src={dashboardImg} alt="Gestion de projet 3D" className="home-dashboard-img" />
+              <img src={dashboardImg} alt="3D Project Management" className="home-dashboard-img" />
             </div>
 
             <div className="home-card home-card-left">
@@ -64,7 +64,7 @@ export default function HomePage() {
                   <CheckCircle2 className="icon" />
                 </div>
                 <div>
-                  <p className="home-card-title">24 tâches terminées</p>
+                  <p className="home-card-title">24 tasks completed</p>
                 </div>
               </div>
             </div>
@@ -75,7 +75,7 @@ export default function HomePage() {
                   <BarChart3 className="icon" />
                 </div>
                 <div>
-                  <p className="home-card-title">85% de progression</p>
+                  <p className="home-card-title">85% progress</p>
                   
                 </div>
               </div>

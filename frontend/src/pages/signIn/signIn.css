@@ -1,4 +1,3 @@
-/* Conteneur principal */
 .signin-container {
   position: relative;
   min-height: 100vh;
@@ -6,7 +5,7 @@
   overflow: hidden;
 }
 
-/* Arrière-plan */
+
 .signin-background {
   position: absolute;
   inset: 0;
@@ -40,7 +39,7 @@
   animation-delay: 1s;
 }
 
-/* Contenu */
+
 .signin-content {
   position: relative;
   z-index: 10;
@@ -56,7 +55,7 @@
   justify-content: center;
 }
 
-/* Card */
+
 .signin-card {
   width: 100%;
   max-width: 28rem;
@@ -78,7 +77,6 @@
   gap: 1.5rem;
 }
 
-/* Header */
 .signin-header {
   display: flex;
   flex-direction: column;
@@ -97,7 +95,7 @@
   color: var(--color-muted-foreground);
 }
 
-/* Form */
+
 .signin-form {
   display: flex;
   flex-direction: column;
@@ -132,7 +130,7 @@
   color: #6d28d9;
 }
 
-/* Input */
+
 .input-wrapper {
   position: relative;
 }
@@ -159,7 +157,7 @@
   color: var(--color-muted-foreground);
 }
 
-/* Button */
+
 .submit-button {
   display: flex;
   align-items: center;
@@ -189,7 +187,7 @@
   width: 1.25rem;
 }
 
-/* Footer */
+
 .signin-footer {
   text-align: center;
   font-size: 0.875rem;
@@ -210,7 +208,7 @@
   color: #6d28d9;
 }
 
-/* Animations */
+
 @keyframes pulse {
   0%, 100% {
     opacity: 1;

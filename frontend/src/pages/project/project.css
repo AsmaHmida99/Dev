@@ -1,11 +1,11 @@
-/* Reset and Base */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Variables */
+
 :root {
   --color-primary: #3b82f6;
   --color-primary-dark: #2563eb;
@@ -14,7 +14,7 @@
   --color-green: #10b981;
   --color-red: #ef4444;
 
-  /* Light theme */
+  
   --bg-main: linear-gradient(to bottom right, #f9fafb, #eff6ff, #faf5ff);
   --bg-card: rgba(255, 255, 255, 0.8);
   --bg-header: rgba(255, 255, 255, 0.7);
@@ -23,14 +23,14 @@
   --text-secondary: #6b7280;
   --text-muted: #9ca3af;
 
-  /* Shadows */
+  
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
-/* Dark Theme */
+
 .dark {
   --bg-main: linear-gradient(to bottom right, #111827, #111827, #1f2937);
   --bg-card: rgba(31, 41, 55, 0.8);
@@ -41,14 +41,14 @@
   --text-muted: #6b7280;
 }
 
-/* App Container */
+
 .app-container {
   min-height: 100vh;
   background: var(--bg-main);
   transition: all 0.3s ease;
 }
 
-/* Header */
+
 .app-header {
   position: sticky;
   top: 0;
@@ -145,7 +145,7 @@
   transform: scale(1.05);
 }
 
-/* Icons */
+
 .icon {
   width: 1.25rem;
   height: 1.25rem;
@@ -161,7 +161,7 @@
   height: 2.5rem;
 }
 
-/* Buttons */
+
 .primary-button {
   display: inline-flex;
   align-items: center;
@@ -241,7 +241,7 @@
   transform: scale(1.05);
 }
 
-/* Main Content */
+
 .main-content {
   max-width: 1400px;
   margin: 0 auto;
@@ -254,7 +254,7 @@
   }
 }
 
-/* Progress Card */
+
 .progress-card {
   background: var(--bg-card);
   backdrop-filter: blur(8px);
@@ -328,7 +328,7 @@
   box-shadow: var(--shadow-md);
 }
 
-/* Empty State */
+
 .empty-state {
   background: var(--bg-card);
   backdrop-filter: blur(8px);
@@ -370,7 +370,7 @@
   margin-right: auto;
 }
 
-/* Projects Grid */
+
 .projects-grid {
   display: grid;
   gap: 1.25rem;
@@ -389,7 +389,7 @@
   }
 }
 
-/* Project Card */
+
 .project-card {
   position: relative;
   background: var(--bg-card);
@@ -546,7 +546,7 @@
   background: rgba(239, 68, 68, 0.1);
 }
 
-/* Tasks */
+
 .tasks-container {
   margin-top: 1.5rem;
 }
@@ -670,7 +670,7 @@
   background: rgba(239, 68, 68, 0.1);
 }
 
-/* Dialog */
+
 .dialog-overlay {
   position: fixed;
   inset: 0;
@@ -816,7 +816,7 @@
   gap: 0.75rem;
 }
 
-/* Responsive */
+
 @media (max-width: 640px) {
   .header-content {
     padding: 1rem 1.5rem;

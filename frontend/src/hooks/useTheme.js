@@ -4,11 +4,11 @@ export const useTheme = () => {
   const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
-    // Toujours démarrer en mode sombre, peu importe le choix précédent
+    
     document.documentElement.classList.add('dark');
     setIsDark(true);
     
-    // Mais permettre à l'utilisateur de basculer et sauvegarder son choix
+    
     const storedTheme = localStorage.getItem('theme');
     if (storedTheme === 'light') {
       document.documentElement.classList.remove('dark');
@@ -16,7 +16,7 @@ export const useTheme = () => {
     }
   }, []);
 
-  // Synchroniser le DOM avec l'état isDark
+  
   useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add('dark');

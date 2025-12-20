@@ -150,7 +150,7 @@ const ProjectPage = () => {
   }
 
   const handleLogout = () => {
-    // Implement logout logic here
+    
     console.log("Logout")
   }
 
@@ -164,25 +164,25 @@ const ProjectPage = () => {
         <div className="header-content">
           <div className="header-left">
             {selectedProject && (
-              <button onClick={() => setSelectedProject(null)} className="back-button" title="Retour aux projets">
+              <button onClick={() => setSelectedProject(null)} className="back-button" title="Back to projects">
                 <ChevronRight className="icon-rotate" />
               </button>
             )}
             <div className="header-title-section">
-              <h1 className="header-title">{selectedProject ? currentProject?.title : "Mes Projets"}</h1>
+              <h1 className="header-title">{selectedProject ? currentProject?.title : "My Projects"}</h1>
               <p className="header-subtitle">
                 {selectedProject ? (
                   <>
                     <CheckCircle2 className="icon-small" />
                     <span>
                       {currentProject?.tasks.filter((t) => t.completed).length}/{currentProject?.tasks.length || 0}{" "}
-                      tâches
+                      tasks
                     </span>
                   </>
                 ) : (
                   <>
                     <Folder className="icon-small" />
-                    {projects.length} projet{projects.length > 1 ? "s" : ""}
+                    {projects.length} project{projects.length > 1 ? "s" : ""}
                   </>
                 )}
               </p>
@@ -204,25 +204,25 @@ const ProjectPage = () => {
               className="primary-button"
             >
               <Plus className="icon" />
-              <span className="button-text">{selectedProject ? "Nouvelle tâche" : "Nouveau projet"}</span>
+              <span className="button-text">{selectedProject ? "New task" : "New project"}</span>
             </button>
           </div>
         </div>
       </div>
-      {/* Main Content */}
+   
       <main className="main-content">
         {selectedProject && currentProject && (
           <div className="progress-card">
             <div className="progress-header">
               <div className="progress-info">
-                <h2 className="progress-title">Progression globale</h2>
+                  <h2 className="progress-title">Overall Progress</h2>
                 <p className="progress-subtitle">
-                  {currentProject.tasks.filter((t) => t.completed).length} sur {currentProject.tasks.length} tâches
+                  {currentProject.tasks.filter((t) => t.completed).length} out of {currentProject.tasks.length} tasks
                 </p>
               </div>
               <div className="progress-percentage">
                 <div className="percentage-value">{getProgress(selectedProject.id)}%</div>
-                <p className="percentage-label">Complété</p>
+                <p className="percentage-label">Completed</p>
               </div>
             </div>
             <div className="progress-bar-container">
@@ -234,8 +234,8 @@ const ProjectPage = () => {
         {!selectedProject ? (
           projects.length === 0 ? (
             <div className="empty-state">
-              <h3 className="empty-title">Aucun projet pour le moment</h3>
-              <p className="empty-text">Commencez par créer votre premier projet</p>
+              <h3 className="empty-title">No projects yet</h3>
+              <p className="empty-text">Start by creating your first project</p>
               <button
                 onClick={() => {
                   setProjectForm({ title: "", description: "" })
@@ -244,7 +244,7 @@ const ProjectPage = () => {
                 className="primary-button"
               >
                 <Plus className="icon" />
-                Créer un projet
+                Create a project
               </button>
             </div>
           ) : (
@@ -261,7 +261,7 @@ const ProjectPage = () => {
                         <p className="project-tasks">
                           <CheckCircle2 className="icon-small" />
                           <span>
-                            {project.tasks.length} tâche{project.tasks.length > 1 ? "s" : ""}
+                            {project.tasks.length} task{project.tasks.length > 1 ? "s" : ""}
                           </span>
                         </p>
                       </div>
@@ -272,7 +272,7 @@ const ProjectPage = () => {
 
                     <div className="project-progress">
                       <div className="progress-label">
-                        <span>Progression</span>
+                        <span>Progress</span>
                         <span className="progress-count">
                           {completedTasks}/{project.tasks.length}
                         </span>
@@ -281,7 +281,7 @@ const ProjectPage = () => {
                         <div className="progress-bar-fill" style={{ width: `${progress}%` }} />
                       </div>
                       <div className="progress-badge-container">
-                        <span className="progress-badge">{progress}% complété</span>
+                        <span className="progress-badge">{progress}% completed</span>
                       </div>
                     </div>
 
@@ -294,7 +294,7 @@ const ProjectPage = () => {
                         className="action-button edit-button"
                       >
                         <Edit2 className="icon-small" />
-                        <span>Modifier</span>
+                        <span>Edit</span>
                       </button>
                       <button
                         onClick={(e) => {
@@ -321,8 +321,8 @@ const ProjectPage = () => {
                 <div className="empty-icon">
                   <CheckCircle2 className="icon-large" />
                 </div>
-                <h3 className="empty-title">Aucune tâche pour le moment</h3>
-                <p className="empty-text">Commencez par créer votre première tâche pour ce projet</p>
+                <h3 className="empty-title">No tasks yet</h3>
+                <p className="empty-text">Start by creating your first task for this project</p>
                 <button
                   onClick={() => {
                     setTaskForm({ title: "", description: "" })
@@ -331,7 +331,7 @@ const ProjectPage = () => {
                   className="primary-button"
                 >
                   <Plus className="icon" />
-                  Créer une tâche
+                  Create a task
                 </button>
               </div>
             ) : (
@@ -357,7 +357,7 @@ const ProjectPage = () => {
                       </div>
 
                       <div className="task-actions">
-                        <button onClick={() => openEditTask(task)} className="task-action-button" title="Modifier">
+                        <button onClick={() => openEditTask(task)} className="task-action-button" title="Edit">
                           <Edit2 className="icon-small" />
                         </button>
                         <button
@@ -368,7 +368,7 @@ const ProjectPage = () => {
                             setShowDeleteModal(true)
                           }}
                           className="task-action-button delete"
-                          title="Supprimer"
+                          title="Delete"
                         >
                           <Trash2 className="icon-small" />
                         </button>
@@ -382,7 +382,7 @@ const ProjectPage = () => {
         )}
       </main>
 
-      {/* Project Dialog */}
+     
       {showProjectDialog && (
         <div className="dialog-overlay">
           <div className="dialog">
@@ -390,17 +390,17 @@ const ProjectPage = () => {
               <div className="dialog-icon project-icon">
                 <Folder className="icon" />
               </div>
-              <h2 className="dialog-title">{editingProject ? "Modifier le projet" : "Nouveau projet"}</h2>
+              <h2 className="dialog-title">{editingProject ? "Edit project" : "New project"}</h2>
             </div>
 
             <div className="dialog-content">
               <div className="form-group">
-                <label className="form-label">Titre du projet</label>
+                <label className="form-label">Project title</label>
                 <input
                   type="text"
                   value={projectForm.title}
                   onChange={(e) => setProjectForm({ ...projectForm, title: e.target.value })}
-                  placeholder="Ex: Site Web E-commerce"
+                  placeholder="Ex: E-commerce Website"
                   className="form-input"
                   autoFocus
                 />
@@ -410,7 +410,7 @@ const ProjectPage = () => {
                 <textarea
                   value={projectForm.description}
                   onChange={(e) => setProjectForm({ ...projectForm, description: e.target.value })}
-                  placeholder="Décrivez votre projet en quelques mots..."
+                  placeholder="Describe your project in a few words..."
                   rows={4}
                   className="form-textarea"
                 />
@@ -426,21 +426,21 @@ const ProjectPage = () => {
                 }}
                 className="secondary-button"
               >
-                Annuler
+                Cancel
               </button>
               <button
                 onClick={editingProject ? updateProject : createProject}
                 disabled={!projectForm.title.trim()}
                 className="primary-button"
               >
-                {editingProject ? "Enregistrer" : "Créer"}
+                {editingProject ? "Save" : "Create"}
               </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* Task Dialog */}
+    
       {showTaskDialog && (
         <div className="dialog-overlay">
           <div className="dialog">
@@ -448,29 +448,29 @@ const ProjectPage = () => {
               <div className="dialog-icon task-icon">
                 <CheckCircle2 className="icon" />
               </div>
-              <h2 className="dialog-title">{editingTask ? "Modifier la tâche" : "Nouvelle tâche"}</h2>
+              <h2 className="dialog-title">{editingTask ? "Edit task" : "New task"}</h2>
             </div>
 
             <div className="dialog-content">
               <div className="form-group">
-                <label className="form-label">Titre de la tâche</label>
+                <label className="form-label">Task title</label>
                 <input
                   type="text"
                   value={taskForm.title}
                   onChange={(e) => setTaskForm({ ...taskForm, title: e.target.value })}
-                  placeholder="Ex: Design de la maquette"
+                  placeholder="Ex: Design mockup"
                   className="form-input"
                   autoFocus
                 />
               </div>
               <div className="form-group">
                 <label className="form-label">
-                  Description <span className="optional-label">(optionnel)</span>
+                  Description <span className="optional-label">(optional)</span>
                 </label>
                 <textarea
                   value={taskForm.description}
                   onChange={(e) => setTaskForm({ ...taskForm, description: e.target.value })}
-                  placeholder="Détails supplémentaires sur cette tâche..."
+                  placeholder="Additional details about this task..."
                   rows={4}
                   className="form-textarea"
                 />
@@ -486,21 +486,21 @@ const ProjectPage = () => {
                 }}
                 className="secondary-button"
               >
-                Annuler
+                Cancel
               </button>
               <button
                 onClick={editingTask ? updateTask : addTask}
                 disabled={!taskForm.title.trim()}
                 className="primary-button"
               >
-                {editingTask ? "Enregistrer" : "Ajouter"}
+                {editingTask ? "Save" : "Add"}
               </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* Delete Confirmation Modal */}
+    
       {showDeleteModal && (
         <div className="dialog-overlay">
           <div className="dialog">
@@ -508,18 +508,18 @@ const ProjectPage = () => {
               <div className="dialog-icon delete-icon">
                 <Trash2 className="icon" />
               </div>
-              <h2 className="dialog-title">Confirmer la suppression</h2>
+              <h2 className="dialog-title">Confirm deletion</h2>
             </div>
 
             <div className="dialog-content">
               <p className="confirmation-message">
-                Voulez-vous vraiment supprimer {deleteType === 'task' ? 'cette tâche' : 'ce projet'} "{deleteName}" ?
+                Are you sure you want to delete this {deleteType === 'task' ? 'task' : 'project'} "{deleteName}"?
               </p>
             </div>
 
             <div className="dialog-actions">
               <button onClick={cancelDelete} className="secondary-button">
-                Annuler
+                Cancel
               </button>
               <button onClick={confirmDelete} className="delete-confirm-button">
                 OK

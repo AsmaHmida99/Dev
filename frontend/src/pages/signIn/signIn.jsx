@@ -32,8 +32,8 @@ export default function SignInPage() {
           <div className="signin-card">
             <div className="signin-card-content">
               <div className="signin-header">
-                <h1 className="signin-title">Connexion</h1>
-                <p className="signin-subtitle">Entrez vos informations pour vous connecter</p>
+                <h1 className="signin-title">Sign In</h1>
+                <p className="signin-subtitle">Enter your information to sign in</p>
               </div>
 
               <form onSubmit={handleSubmit} className="signin-form">
@@ -45,7 +45,7 @@ export default function SignInPage() {
                     <input
                       id="email"
                       type="email"
-                      placeholder="vous@exemple.com"
+                      placeholder="you@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="form-input"
@@ -57,10 +57,10 @@ export default function SignInPage() {
                 <div className="form-group">
                   <div className="form-label-row">
                     <label htmlFor="password" className="form-label">
-                      Mot de passe
+                      Password
                     </label>
                     <Link to="/forgot-password" className="forgot-link">
-                      Mot de passe oublié ?
+                      Forgot password?
                     </Link>
                   </div>
                   <div className="input-wrapper">
@@ -77,15 +77,15 @@ export default function SignInPage() {
                 </div>
 
                 <button type="submit" className="submit-button">
-                  Se connecter
+                  Sign In
                   <ArrowRight className="button-icon" />
                 </button>
               </form>
 
               <div className="signin-footer">
-                <span className="footer-text">Vous n'avez pas de compte ? </span>
+                <span className="footer-text">Don't have an account? </span>
                 <Link to="/signup" className="footer-link">
-                  Créer un compte
+                  Create an account
                 </Link>
               </div>
             </div>

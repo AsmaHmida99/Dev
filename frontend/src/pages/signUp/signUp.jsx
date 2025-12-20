@@ -28,27 +28,27 @@ export default function SignUpPage() {
 
       <Header />
 
-      {/* CONTENU CENTRÉ */}
+     
       <div className="signup-content">
         <div className="signup-form-wrapper">
           <div className="signup-card">
             <div className="signup-card-content">
 
               <div className="signup-header">
-                <h1 className="signup-title">Créer un compte</h1>
+                <h1 className="signup-title">Create an account</h1>
                 <p className="signup-subtitle">
-                  Entrez vos informations pour créer votre compte
+                  Enter your information to create your account
                 </p>
               </div>
 
               <form onSubmit={handleSubmit} className="signup-form">
                 <div className="form-group">
-                  <label htmlFor="name" className="form-label">Nom complet</label>
+                  <label htmlFor="name" className="form-label">Full name</label>
                   <div className="input-wrapper">
                     <input
                       id="name"
                       type="text"
-                      placeholder="Jean Dupont"
+                      placeholder="John Doe"
                       value={formData.name}
                       onChange={(e) =>
                         setFormData({ ...formData, name: e.target.value })
@@ -65,7 +65,7 @@ export default function SignUpPage() {
                     <input
                       id="email"
                       type="email"
-                      placeholder="vous@exemple.com"
+                      placeholder="you@example.com"
                       value={formData.email}
                       onChange={(e) =>
                         setFormData({ ...formData, email: e.target.value })
@@ -77,7 +77,7 @@ export default function SignUpPage() {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="password" className="form-label">Mot de passe</label>
+                  <label htmlFor="password" className="form-label">Password</label>
                   <div className="input-wrapper">
                     <input
                       id="password"
@@ -95,7 +95,7 @@ export default function SignUpPage() {
 
                 <div className="form-group">
                   <label htmlFor="confirmPassword" className="form-label">
-                    Confirmer le mot de passe
+                    Confirm password
                   </label>
                   <div className="input-wrapper">
                     <input
@@ -116,25 +116,25 @@ export default function SignUpPage() {
                 </div>
 
                 <button type="submit" className="submit-button">
-                  Créer mon compte
+                  Create my account
                   <ArrowRight className="button-icon" />
                 </button>
               </form>
 
               <div className="signup-footer">
-                <span className="footer-text">Vous avez déjà un compte ? </span>
+                <span className="footer-text">Already have an account? </span>
                 <Link to="/signin" className="footer-link">
-                  Se connecter
+                  Sign in
                 </Link>
               </div>
             </div>
           </div>
 
           <p className="signup-terms">
-            En créant un compte, vous acceptez nos{' '}
-            <Link to="/terms" className="terms-link">Conditions d'utilisation</Link>{' '}
-            et notre{' '}
-            <Link to="/privacy" className="terms-link">Politique de confidentialité</Link>.
+            By creating an account, you agree to our{' '}
+            <Link to="/terms" className="terms-link">Terms of Service</Link>{' '}
+            and our{' '}
+            <Link to="/privacy" className="terms-link">Privacy Policy</Link>.
           </p>
         </div>
       </div>

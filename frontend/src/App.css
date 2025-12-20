@@ -16,9 +16,7 @@
   --color-muted-foreground: #94a3b8;  
 }  
   
-/* ===============================  
-   RESET + BASE  
-================================ */  
+
   
 * {  
   margin: 0;  
@@ -33,9 +31,7 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;  
 }  
   
-/* ===============================  
-   UTILS  
-================================ */  
+ 
   
 .icon {  
   width: 1.5rem;  
