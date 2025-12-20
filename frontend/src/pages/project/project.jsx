@@ -15,8 +15,12 @@ const ProjectPage = () => {
   const [selectedProject, setSelectedProject] = useState(null)
   const [showProjectDialog, setShowProjectDialog] = useState(false)
   const [showTaskDialog, setShowTaskDialog] = useState(false)
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [editingProject, setEditingProject] = useState(null)
   const [editingTask, setEditingTask] = useState(null)
+  const [deleteType, setDeleteType] = useState(null) // 'task' or 'project'
+  const [deleteId, setDeleteId] = useState(null)
+  const [deleteName, setDeleteName] = useState('')
 
   const [projectForm, setProjectForm] = useState({ title: "", description: "" })
   const [taskForm, setTaskForm] = useState({ title: "", description: "" })
@@ -112,6 +116,25 @@ const ProjectPage = () => {
     setProjects(
       projects.map((p) => (p.id === selectedProject.id ? { ...p, tasks: p.tasks.filter((t) => t.id !== taskId) } : p)),
     )
+  }
+
+  const confirmDelete = () => {
+    if (deleteType === 'task') {
+      deleteTask(deleteId)
+    } else if (deleteType === 'project') {
+      deleteProject(deleteId)
+    }
+    setShowDeleteModal(false)
+    setDeleteType(null)
+    setDeleteId(null)
+    setDeleteName('')
+  }
+
+  const cancelDelete = () => {
+    setShowDeleteModal(false)
+    setDeleteType(null)
+    setDeleteId(null)
+    setDeleteName('')
   }
 
   const openEditProject = (project) => {
@@ -276,9 +299,10 @@ const ProjectPage = () => {
                       <button
                         onClick={(e) => {
                           e.stopPropagation()
-                          if (window.confirm(`Supprimer "${project.title}" ?`)) {
-                            deleteProject(project.id)
-                          }
+                          setDeleteType('project')
+                          setDeleteId(project.id)
+                          setDeleteName(project.title)
+                          setShowDeleteModal(true)
                         }}
                         className="action-button delete-button"
                       >
@@ -338,9 +362,10 @@ const ProjectPage = () => {
                         </button>
                         <button
                           onClick={() => {
-                            if (window.confirm("Supprimer cette tâche ?")) {
-                              deleteTask(task.id)
-                            }
+                            setDeleteType('task')
+                            setDeleteId(task.id)
+                            setDeleteName(task.title)
+                            setShowDeleteModal(true)
                           }}
                           className="task-action-button delete"
                           title="Supprimer"
@@ -469,6 +494,35 @@ const ProjectPage = () => {
                 className="primary-button"
               >
                 {editingTask ? "Enregistrer" : "Ajouter"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Confirmation Modal */}
+      {showDeleteModal && (
+        <div className="dialog-overlay">
+          <div className="dialog">
+            <div className="dialog-header">
+              <div className="dialog-icon delete-icon">
+                <Trash2 className="icon" />
+              </div>
+              <h2 className="dialog-title">Confirmer la suppression</h2>
+            </div>
+
+            <div className="dialog-content">
+              <p className="confirmation-message">
+                Voulez-vous vraiment supprimer {deleteType === 'task' ? 'cette tâche' : 'ce projet'} "{deleteName}" ?
+              </p>
+            </div>
+
+            <div className="dialog-actions">
+              <button onClick={cancelDelete} className="secondary-button">
+                Annuler
+              </button>
+              <button onClick={confirmDelete} className="delete-confirm-button">
+                OK
               </button>
             </div>
           </div>

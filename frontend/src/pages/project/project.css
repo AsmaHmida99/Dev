@@ -188,6 +188,32 @@
   cursor: not-allowed;
 }
 
+.delete-confirm-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  background: linear-gradient(to right, var(--color-red), #dc2626);
+  color: white;
+  font-weight: 500;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-lg);
+  transition: all 0.2s;
+}
+
+.delete-confirm-button:hover:not(:disabled) {
+  background: linear-gradient(to right, #dc2626, #b91c1c);
+  box-shadow: var(--shadow-xl);
+  transform: scale(1.05);
+}
+
+.delete-confirm-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .button-text {
   display: none;
 }
@@ -714,6 +740,10 @@
   background: linear-gradient(to bottom right, var(--color-green), #059669);
 }
 
+.delete-icon {
+  background: linear-gradient(to bottom right, var(--color-red), #dc2626);
+}
+
 .dialog-icon .icon {
   color: white;
 }
@@ -726,6 +756,13 @@
 
 .dialog-content {
   margin-bottom: 2rem;
+}
+
+.confirmation-message {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 .form-group {
