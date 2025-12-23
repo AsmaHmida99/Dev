@@ -1,0 +1,141 @@
+# Task Management Application – Full Stack Project
+
+## Introduction
+
+This project is a full-stack task management application that allows users to manage projects and their associated tasks. The application provides authentication, project and task management, and progress tracking, following clean architecture and modern development practices.
+
+---
+
+## Table of Contents
+
+- [Functional Requirements](#functional-requirements)
+- [Non-Functional Requirements](#non-functional-requirements)
+- [Conception](#conception)
+- [Technical Stack](#technical-stack)
+- [Getting Started](#getting-started)
+- [Environment Variables](#environment-variables)
+- [Demo Video](#demo-video)
+
+---
+
+## Functional Requirements
+
+### 1. Authentication
+- Login using email and password  
+- JWT-based authentication  
+- Secure token generation  
+- All API endpoints (except login/register) are protected  
+
+### 2. Project Management
+- Create a project (title required, description optional)  
+- List all user projects  
+- View project details  
+- Update and delete projects (full CRUD)  
+
+### 3. Task Management
+- Create tasks with:
+  - title  
+  - description  
+  - due date  
+- Mark tasks as completed  
+- Delete tasks  
+- List all tasks belonging to a project  
+
+### 4. Project Progress Tracking
+- Automatic calculation of:
+  - total tasks  
+  - completed tasks  
+  - progress percentage  
+- Visual progress bar displayed in the UI  
+
+---
+
+## Non-Functional Requirements
+
+### 1. Security
+- JWT authentication with expiration  
+- Password encryption using BCrypt  
+- Input validation using `@Valid`  
+- Secure configuration using environment variables  
+
+### 2. Performance
+- Optimized database queries with Spring Data JPA  
+- Lazy loading of project tasks  
+- Fast frontend build with Vite  
+
+### 3. User Experience
+- Responsive UI (mobile and desktop)  
+- Light and dark theme support  
+- Clear error messages and user feedback  
+- Smooth UI transitions  
+
+### 4. Maintainability
+- Clean layered architecture (Controller / Service / Repository)  
+- Reusable React components  
+- Dockerized deployment for consistency  
+
+---
+
+## Conception
+
+### Use Case Diagram
+
+The use case diagram illustrates the main interactions between the user and the system, including authentication, project management, task management, and progress tracking.
+
+![Use Case Diagram](docs/use_case.png)
+
+### Class Diagram
+
+The class diagram represents the core domain model of the application and the relationships between entities such as User, Project, and Task.
+
+![Class Diagram](docs/class_diagram.png)
+
+---
+
+## Technical Stack
+
+### Backend
+- **Framework:** Spring Boot 3.4.x  
+- **Language:** Java 17  
+- **Security:** Spring Security + JWT  
+- **Database:** PostgreSQL + Spring Data JPA  
+- **Build Tool:** Maven  
+
+### Frontend
+- **Framework:** React 19  
+- **Build Tool:** Vite  
+- **Styling:** Tailwind CSS  
+- **Routing:** React Router DOM  
+- **HTTP Client:** Axios  
+
+### Infrastructure
+- **Containerization:** Docker and Docker Compose  
+- **Web Server:** Nginx (production)  
+- **Database:** PostgreSQL 15 (alpine)  
+
+---
+
+## Getting Started
+
+### Prerequisites
+- Docker and Docker Compose  
+- Git  
+
+### Step 1: Clone the Repository
+```bash
+git clone <your-repository-url>
+cd task-management-app
+
+Step 2: Environment Variables Configuration
+bash
+cp .env.example .env
+
+Edit the .env file and set your own values (database credentials, JWT secret, etc.).
+
+Step 3: Run the Application with Docker
+bash
+docker-compose up --build
+
+Application URLs
+Frontend: [http://localhost:3000]
+Backend API: [http://localhost:8080]
