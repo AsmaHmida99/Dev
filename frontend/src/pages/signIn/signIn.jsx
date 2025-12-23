@@ -2,19 +2,53 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import Header from '../../components/header/header';
+import { useAuth } from '../../context/AuthContext';
 import './signIn.css';
 
 export default function SignInPage() {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Sign in data:', formData);
-    navigate('/project');
+    e.stopPropagation();
+
+    // Vérifier que les champs ne sont pas vides
+    if (!formData.email || !formData.password) {
+      setError('Please fill in all fields');
+      return;
+    }
+
+    setError('');
+    setLoading(true);
+
+    try {
+      await login(formData.email, formData.password);
+      navigate('/project');
+    } catch (err) {
+      // Extraire le message d'erreur
+      let errorMessage = 'Failed to sign in. Please check your credentials.';
+
+      if (err && typeof err === 'object') {
+        if (err.message) {
+          errorMessage = err.message;
+        } else if (err.response?.data?.message) {
+          errorMessage = err.response.data.message;
+        }
+      } else if (typeof err === 'string') {
+        errorMessage = err;
+      }
+
+      setError(errorMessage);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -36,7 +70,20 @@ export default function SignInPage() {
                 <p className="signin-subtitle">Enter your information to sign in</p>
               </div>
 
-              <form onSubmit={handleSubmit} className="signin-form">
+              <form onSubmit={handleSubmit} className="signin-form" noValidate>
+                {error && (
+                  <div style={{
+                    padding: '12px',
+                    backgroundColor: '#fee2e2',
+                    color: '#991b1b',
+                    borderRadius: '8px',
+                    fontSize: '14px',
+                    marginBottom: '16px'
+                  }}>
+                    {error}
+                  </div>
+                )}
+
                 <div className="form-group">
                   <label htmlFor="email" className="form-label">
                     Email
@@ -50,6 +97,7 @@ export default function SignInPage() {
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="form-input"
                       required
+                      disabled={loading}
                     />
                   </div>
                 </div>
@@ -72,13 +120,18 @@ export default function SignInPage() {
                       onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                       className="form-input"
                       required
+                      disabled={loading}
                     />
                   </div>
                 </div>
 
-                <button type="submit" className="submit-button">
-                  Sign In
-                  <ArrowRight className="button-icon" />
+                <button 
+                  type="submit" 
+                  className="submit-button" 
+                  disabled={loading || !formData.email || !formData.password}
+                >
+                  {loading ? 'Signing in...' : 'Sign In'}
+                  {!loading && <ArrowRight className="button-icon" />}
                 </button>
               </form>
 

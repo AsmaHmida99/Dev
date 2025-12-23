@@ -1,20 +1,59 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import Header from '../../components/header/header';
+import { useAuth } from '../../context/AuthContext';
 import './signUp.css';
 
 export default function SignUpPage() {
+  const navigate = useNavigate();
+  const { register } = useAuth();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
     confirmPassword: '',
   });
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Sign up data:', formData);
+    setError('');
+
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+
+    if (formData.password.length < 6) {
+      setError('Password must be at least 6 characters long');
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      await register(formData.email, formData.password);
+      navigate('/signin', { state: { message: 'Account created successfully! Please sign in.' } });
+    } catch (err) {
+      // Extraire le message d'erreur
+      let errorMessage = 'Failed to create account. Please try again.';
+
+      if (err && typeof err === 'object') {
+        if (err.message) {
+          errorMessage = err.message;
+        } else if (err.response?.data?.message) {
+          errorMessage = err.response.data.message;
+        } else if (typeof err === 'string') {
+          errorMessage = err;
+        }
+      }
+
+      setError(errorMessage);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -42,6 +81,19 @@ export default function SignUpPage() {
               </div>
 
               <form onSubmit={handleSubmit} className="signup-form">
+                {error && (
+                  <div style={{
+                    padding: '12px',
+                    backgroundColor: '#fee2e2',
+                    color: '#991b1b',
+                    borderRadius: '8px',
+                    fontSize: '14px',
+                    marginBottom: '16px'
+                  }}>
+                    {error}
+                  </div>
+                )}
+
                 <div className="form-group">
                   <label htmlFor="name" className="form-label">Full name</label>
                   <div className="input-wrapper">
@@ -55,6 +107,7 @@ export default function SignUpPage() {
                       }
                       className="form-input"
                       required
+                      disabled={loading}
                     />
                   </div>
                 </div>
@@ -72,6 +125,7 @@ export default function SignUpPage() {
                       }
                       className="form-input"
                       required
+                      disabled={loading}
                     />
                   </div>
                 </div>
@@ -89,6 +143,7 @@ export default function SignUpPage() {
                       }
                       className="form-input"
                       required
+                      disabled={loading}
                     />
                   </div>
                 </div>
@@ -111,13 +166,14 @@ export default function SignUpPage() {
                       }
                       className="form-input"
                       required
+                      disabled={loading}
                     />
                   </div>
                 </div>
 
-                <button type="submit" className="submit-button">
-                  Create my account
-                  <ArrowRight className="button-icon" />
+                <button type="submit" className="submit-button" disabled={loading}>
+                  {loading ? 'Creating account...' : 'Create my account'}
+                  {!loading && <ArrowRight className="button-icon" />}
                 </button>
               </form>
 
